@@ -127,27 +127,13 @@ __myevic__ void ProfileMenuIDraw(int it, int line, int sel) {
     uint8_t  mode;
     uint16_t rez;
 
-    // const uint8_t *modes[] =
-    //	{ String_NI, String_TI, String_SS, String_TC, String_PW, String_BY,
-    // String_SM };
-
-    /*
-            if ( it == dfProfile )
-            {
-                    mode = dfMode;
-                    rez  = dfResistance;
-            }
-            else
-            {
-    */
     mode = p->Mode;
     rez  = p->Resistance;
-    //	}
 
     DrawStringCentered(String_LongFire, 105);
     DrawStringCentered(String_Save, 116);
 
-    if (mode > 6)
+    if(mode > sizeof(modes)/sizeof(modes[0]))
         return;
 
     DrawString(modes[mode], 18, line + 2);
