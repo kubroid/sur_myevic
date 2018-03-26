@@ -22,14 +22,10 @@
 // When not using stdio, you may put whatever you want in there.
 //-------------------------------------------------------------------------
 #ifndef _STDIO_H_
-typedef struct __FILE
-{
-	int handle;
-}
-FILE;
+typedef struct __FILE { int handle; } FILE;
 #endif
 
-typedef char FPUTC_FUNC( char c, FILE *out );
+typedef char FPUTC_FUNC(char c, FILE *out);
 
 //-------------------------------------------------------------------------
 // Global variables you must set before calling myprintf()
@@ -41,7 +37,7 @@ extern FPUTC_FUNC *myputc;
 
 //-------------------------------------------------------------------------
 
-int myprintf( const char *format, ... );
+int myprintf(const char *format, ...);
 
 //=========================================================================
 

@@ -3,22 +3,22 @@
 
 //=========================================================================
 
-extern uint8_t	ContrastNum;
-extern uint8_t	FireClickCount;
-extern uint8_t	FireClickTimer;
-extern int8_t	UserInputs;
-extern int8_t	LastInputs;
-extern uint8_t	FireClicksEvent;
+extern uint8_t ContrastNum;
+extern uint8_t FireClickCount;
+extern uint8_t FireClickTimer;
+extern int8_t  UserInputs;
+extern int8_t  LastInputs;
+extern uint8_t FireClicksEvent;
 
-extern uint8_t	KeyUpTimer;
-extern uint16_t	KeyTicks;
-extern uint16_t	KeyPressTime;
+extern uint8_t  KeyUpTimer;
+extern uint16_t KeyTicks;
+extern uint16_t KeyPressTime;
 
-extern uint8_t	WattsInc;
+extern uint8_t WattsInc;
 
 //-------------------------------------------------------------------------
 extern volatile uint8_t Event;
-extern uint8_t	LastEvent;
+extern uint8_t          LastEvent;
 
 //  0 Idle
 //  1 Fire button
@@ -55,54 +55,51 @@ extern uint8_t	LastEvent;
 // 40 LOGO menu select
 // 41 Game menu select
 
-
 // Events 100+ are custom events not existing in the OFW
 
-#define EVENT_TOGGLE_CLOCK		100
+#define EVENT_TOGGLE_CLOCK 100
 //#define EVENT_DEBUG_MODE		101
-#define EVENT_EDIT_CONTRAST		102
-#define EVENT_ENTER_MENUS		103
-#define EVENT_LONG_FIRE			104
-#define EVENT_EXIT_MENUS		105
-#define EVENT_PARENT_MENU		106
-#define EVENT_SET_TIME			107
-#define EVENT_SET_DATE			108
-#define EVENT_NEXT_MODE			109
-#define EVENT_TOGGLE_TDOM		110
-#define EVENT_RESET_VVEL		111
+#define EVENT_EDIT_CONTRAST 102
+#define EVENT_ENTER_MENUS 103
+#define EVENT_LONG_FIRE 104
+#define EVENT_EXIT_MENUS 105
+#define EVENT_PARENT_MENU 106
+#define EVENT_SET_TIME 107
+#define EVENT_SET_DATE 108
+#define EVENT_NEXT_MODE 109
+#define EVENT_TOGGLE_TDOM 110
+#define EVENT_RESET_VVEL 111
 //#define EVENT_FORCE_VCOM		112
-#define EVENT_AUTO_PUFF			113
-#define EVENT_CLK_SPEED			114
-#define EVENT_CLK_ADJUST		115
-#define EVENT_INVERT_SCREEN		116
-#define EVENT_MODE_CHANGE		117
-#define EVENT_PROFILE_MENU		118
+#define EVENT_AUTO_PUFF 113
+#define EVENT_CLK_SPEED 114
+#define EVENT_CLK_ADJUST 115
+#define EVENT_INVERT_SCREEN 116
+#define EVENT_MODE_CHANGE 117
+#define EVENT_PROFILE_MENU 118
 //#define EVENT_NEXT_PROFILE		119
-#define EVENT_POWER_CURVE		120
-#define EVENT_TETRIS                    121
-#define EVENT_SAVER                     122
-#define EVENT_SET_JOULES		123
+#define EVENT_POWER_CURVE 120
+#define EVENT_TETRIS 121
+#define EVENT_SAVER 122
+#define EVENT_SET_JOULES 123
 
 //==============================================================================
 
-enum
-{
-	CLICK_ACTION_NONE = 0,
-	CLICK_ACTION_EDIT,
-	CLICK_ACTION_CLOCK,
-	CLICK_ACTION_TDOM,
-	CLICK_ACTION_NEXT_MODE,
-	CLICK_ACTION_ON_OFF,
-	CLICK_ACTION_PROFILE,
-        CLICK_ACTION_TETRIS,
-        CLICK_ACTION_GAME,
-        CLICK_ACTION_SAVER,
-        CLICK_ACTION_MENU,
-        CLICK_ACTION_BATTERIES,
-        CLICK_ACTION_REZRESET,
-	CLICK_ACTION_MAX //last index in enum
+enum {
+    CLICK_ACTION_NONE = 0,
+    CLICK_ACTION_EDIT,
+    CLICK_ACTION_CLOCK,
+    CLICK_ACTION_TDOM,
+    CLICK_ACTION_NEXT_MODE,
+    CLICK_ACTION_ON_OFF,
+    CLICK_ACTION_PROFILE,
+    CLICK_ACTION_TETRIS,
+    CLICK_ACTION_GAME,
+    CLICK_ACTION_SAVER,
+    CLICK_ACTION_MENU,
+    CLICK_ACTION_BATTERIES,
+    CLICK_ACTION_REZRESET,
+    CLICK_ACTION_MAX // last index in enum
 };
-
 
 //==============================================================================
 
@@ -116,11 +113,10 @@ extern void EventHandler();
 extern void ResetVapedCounter();
 extern void ResetAllCounters();
 extern void ResetPuffCounters();
-extern int CustomEvents();
+extern int  CustomEvents();
 
-extern void PowerPlus( uint16_t *pwr, uint16_t min, uint16_t max );
-extern void PowerMinus( uint16_t *pwr, uint16_t min, uint16_t max );
-
+extern void PowerPlus(uint16_t *pwr, uint16_t min, uint16_t max);
+extern void PowerMinus(uint16_t *pwr, uint16_t min, uint16_t max);
 
 //==============================================================================
 

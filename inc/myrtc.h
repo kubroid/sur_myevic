@@ -8,7 +8,7 @@
 // REAL-TIME CLOCK
 //=========================================================================
 
-#define IS_RTC_OPENED() ((RTC->INIT&RTC_INIT_ACTIVE_Msk)!=0)
+#define IS_RTC_OPENED() ((RTC->INIT & RTC_INIT_ACTIVE_Msk) != 0)
 
 //=========================================================================
 // LIRC correction ratio
@@ -19,17 +19,17 @@
 // "Clk Speed" configuration menu.
 // This value is unused if a X32 is soldered on the board.
 
-#define RTC_DEF_CLK_RATIO	33425
+#define RTC_DEF_CLK_RATIO 33425
 
-#define RTC_MIN_CLOCK_RATIO	30000
-#define RTC_MAX_CLOCK_RATIO	35000
+#define RTC_MIN_CLOCK_RATIO 30000
+#define RTC_MAX_CLOCK_RATIO 35000
 
 //-------------------------------------------------------------------------
 // Spare registers usage
 //-------------------------------------------------------------------------
 
-#define RTCSPARE_REF_DATE	0
-#define RTCSPARE_MIDNIGHT       1
+#define RTCSPARE_REF_DATE 0
+#define RTCSPARE_MIDNIGHT 1
 //#define RTCSPARE_VV_BASE	1 //not used
 //#define RTCSPARE_VV_MJOULES	2
 //#define RTCSPARE_VV_MJOULESDAY	3
@@ -42,38 +42,37 @@
 // This value is unused if a X32 is soldered on the board.
 
 extern volatile int32_t ClockCorrection;
-//extern volatile uint8_t IsRTCAlarmINT;
+// extern volatile uint8_t IsRTCAlarmINT;
 
 //=========================================================================
 // Functions
 
-extern void RTCStart( S_RTC_TIME_DATA_T *d );
-extern void GetRTC( S_RTC_TIME_DATA_T *rtd );
-extern void SetRTC( S_RTC_TIME_DATA_T *rtd );
+extern void RTCStart(S_RTC_TIME_DATA_T *d);
+extern void GetRTC(S_RTC_TIME_DATA_T *rtd);
+extern void SetRTC(S_RTC_TIME_DATA_T *rtd);
 
-extern void RTCWriteRegister( uint32_t r, uint32_t v );
-extern uint32_t RTCReadRegister( uint32_t r );
+extern void RTCWriteRegister(uint32_t r, uint32_t v);
+extern uint32_t RTCReadRegister(uint32_t r);
 
-extern void RTCTimeToEpoch( time_t *t, const S_RTC_TIME_DATA_T *d );
-extern void RTCEpochToTime( S_RTC_TIME_DATA_T *d, const time_t *t );
+extern void RTCTimeToEpoch(time_t *t, const S_RTC_TIME_DATA_T *d);
+extern void RTCEpochToTime(S_RTC_TIME_DATA_T *d, const time_t *t);
 
-extern void RTCSetClockSpeed( const unsigned int cs );
+extern void RTCSetClockSpeed(const unsigned int cs);
 extern unsigned int RTCGetClockSpeed();
-extern void RTCAdjustClock( int seconds );
+extern void RTCAdjustClock(int seconds);
 
 extern void RTCSleep();
 extern void RTCWakeUp();
 
-extern time_t RTCGetEpoch( time_t *t );
+extern time_t RTCGetEpoch(time_t *t);
 
-//extern time_t RTCGetReferenceDate();
-//extern void RTCSetReferenceDate( time_t *t );
-extern void RTCWriteNextMidnight();
+// extern time_t RTCGetReferenceDate();
+// extern void RTCSetReferenceDate( time_t *t );
+extern void   RTCWriteNextMidnight();
 extern time_t RTCGetMidnightDate();
 
 extern void ResetMJDay();
 
 //=========================================================================
 
-#endif	/* __MERTC_H__ */
-
+#endif /* __MERTC_H__ */

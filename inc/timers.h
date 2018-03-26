@@ -11,15 +11,15 @@ extern volatile uint32_t TMR3Counter;
 extern volatile uint32_t WarmUpCounter;
 extern volatile uint32_t TickCount;
 
-extern uint16_t	SleepTimer;
-extern uint16_t	AutoPuffTimer;
-extern uint16_t	FadeOutTimer;
+extern uint16_t SleepTimer;
+extern uint16_t AutoPuffTimer;
+extern uint16_t FadeOutTimer;
 
 //-------------------------------------------------------------------------
 
 extern void InitTimers();
 extern void TimedItems();
-extern void WaitOnTMR2( int ms );
+extern void WaitOnTMR2(int ms);
 extern void ResetWatchDog();
 
 extern void StartTickCount();
