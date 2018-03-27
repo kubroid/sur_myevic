@@ -25,34 +25,6 @@ OBJS := $(NUVOSDK)/Device/Nuvoton/M451Series/Source/system_M451Series.o \
 	$(NUVOSDK)/StdDriver/src/uart.o \
 	$(NUVOSDK)/StdDriver/src/crc.o
 
-MYEVIC_OBJS := src/myevic.o \
-	src/main.o \
-	src/myprintf.o \
-	src/atomizer.o \
-	src/dataflash.o \
-	src/screens.o \
-	src/menus.o \
-	src/mainview.o \
-	src/battery.o \
-	src/events.o \
-	src/myrtc.o \
-	src/miscs.o \
-	src/eh.o \
-	src/timers.o \
-	src/meadc.o \
-	src/megpio.o \
-	src/strings.o \
-	src/meusbd.o \
-	src/vcom.o \
-	src/flappy.o \
-	src/fbdata.o \
-	src/tetris.o \
-	src/ttdata.o \
-	src/fonts.o \
-	src/display.o \
-	src/SSD1306.o \
-	src/SSD1327.o
-
 AEABI_OBJS := src/aeabi/aeabi_memset-thumb2.o \
 	src/aeabi/aeabi_memclr.o
 
@@ -154,9 +126,12 @@ LIBDIRS := -L$(ARMGCC)/arm-none-eabi/lib \
 	-L$(ARMGCC)/gcc/arm-none-eabi/$(GCC_VERSION) \
 	-L$(ARMGCC)/lib/gcc/arm-none-eabi/$(GCC_VERSION)
 
-CFLAGS += -Wall -mcpu=$(CPU) -mfpu=$(FPU) -mthumb -Os -fdata-sections -ffunction-sections -std=c99
+CFLAGS += -Wall -mcpu=$(CPU) -mfpu=$(FPU) -mthumb -Os -fdata-sections -ffunction-sections
 CFLAGS += -fno-builtin-printf
 CFLAGS += $(INCDIRS)
+
+CPPFLAGS = $(CFLAGS) -std=c++11
+CFLAGS += -std=c99
 
 ASFLAGS := -mcpu=$(CPU) -mfpu=$(FPU)
 ASFLAGS += $(INCDIRS)
@@ -170,22 +145,27 @@ LDFLAGS += -gc-sections -nostdlib -nostartfiles -T$(LINKSCRIPT)
 
 SRCDIR   = src
 INCDIR   = inc
-OBJDIR   = src
 BINDIR   = bin
-
-INCLUDEH := $(wildcard $(INCDIR)/*.h)
-INCLUDES := $(wildcard $(SRCDIR)/*.s)
+OBJDIR   = $(BINDIR)/obj
 
 all: env_check $(TARGET).bin
 
 $(OBJS_FIXPATH): %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-%.o: %.c $(INCLUDEH)
+%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-%.o: %.s $(INCLUDES)
+%.o: %.cpp
+	$(CC) $(CPPFLAGS) -c $< -o $@
+
+%.o: %.s
 	$(CC) $(CFLAGS) -c $< -o $@
+
+MYEVIC_OBJS := $(patsubst %.c,%.o,$(wildcard $(SRCDIR)/*.c))
+MYEVIC_OBJS += $(patsubst %.cpp,%.o,$(wildcard $(SRCDIR)/*.cpp))
+MYEVIC_OBJS += $(patsubst %.s,%.o,$(wildcard $(SRCDIR)/*.s))
+
 
 $(TARGET)_dec.bin: $(OBJS_FIXPATH) $(MYEVIC_OBJS)
 	test -d $(OUTDIR) || mkdir $(OUTDIR)
