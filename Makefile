@@ -130,7 +130,7 @@ CFLAGS += -Wall -mcpu=$(CPU) -mfpu=$(FPU) -mthumb -Os -fdata-sections -ffunction
 CFLAGS += -fno-builtin-printf
 CFLAGS += $(INCDIRS)
 
-CPPFLAGS = $(CFLAGS) -std=c++11
+CPPFLAGS := $(CFLAGS) -std=c++11
 CFLAGS += -std=c99
 
 ASFLAGS := -mcpu=$(CPU) -mfpu=$(FPU)
